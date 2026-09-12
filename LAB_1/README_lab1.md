@@ -1,1 +1,1 @@
-# university-1st-year-fse-
+# здесь будет описание лабы
