@@ -2,7 +2,7 @@ print("Pavel Puzach")
 print("Simple Map Distance Computations")
 print()
 
-with open(r"C:\Users\grodn\pasha\Univer\university-1st-year-fse-\LAB_2\inmap3.dat", "r") as file:
+with open(r"C:\Users\grodn\pasha\Univer\university-1st-year-fse-\LAB_2\inmap0.dat", "r") as file:
     content = file.read()
     
     numbers = [float(x) for x in content.split()]
