@@ -23,7 +23,6 @@ for i in range(count):
     row_num = i + 1
     znachenie = numbers[i + 2]
     itog = round(znachenie * numbers[1] + 0.00001,1)
-    #itog = znachenie * numbers[1]
     print('#  ',row_num,'     ',znachenie,'       ',itog)
     summa.append(itog)
 
