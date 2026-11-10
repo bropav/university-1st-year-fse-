@@ -1,0 +1,54 @@
+import random
+import time
+
+def multiplication_trainer():
+    try:
+        n = int(input("Введите количество примеров: "))
+    except ValueError:
+        print("Пожалуйста, введите целое число!")
+        return
+
+    correct_answers = 0
+    total_start_time = time.time()
+    
+    question_times = []
+
+    for i in range(1, n + 1):
+        a = random.randint(2, 9)
+        b = random.randint(2, 9)
+        correct_ans = a * b
+        
+        print(f"Вопрос {i}/{n}")
+        
+        start_time = time.time()
+        while True:
+            try:
+                user_input = input(f"{a} × {b} = ")
+                answer = int(user_input)
+                break
+            except ValueError:
+                print("Пожалуйста, введите целое число!")
+                
+        time_spent = time.time() - start_time
+        question_times.append(time_spent)
+        
+        if answer == correct_ans:
+            print(f"Верно! (Время: {time_spent:.1f} сек)")
+            correct_answers += 1
+        else:
+            print(f"Неверно! Правильно: {correct_ans} (Время: {time_spent:.1f} сек)")
+
+    total_time = time.time() - total_start_time
+    avg_time = total_time / n if n > 0 else 0
+    percentage = (correct_answers / n) * 100 if n > 0 else 0
+
+    print("=" * 50)
+    print("СТАТИСТИКА:")
+    print("=" * 50)
+    print(f"Общее время: {total_time:.1f} секунд")
+    print(f"Среднее время на вопрос: {avg_time:.1f} сек")
+    print(f"Правильных ответов: {correct_answers}/{n}")
+    print(f"Процент правильных: {percentage:.1f}%")
+
+if __name__ == "__main__":
+    multiplication_trainer()

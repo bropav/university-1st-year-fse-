@@ -1,0 +1,45 @@
+def analyze_network_traffic():
+    packets = input("Ввод:\n")
+    
+    # Проверка корректности ввода (только '0' и '1', длина не менее 5)
+    if len(packets) < 5 or not all(char in '01' for char in packets):
+        print("Ошибка: строка должна содержать не менее 5 символов и состоять только из '0' и '1'.")
+        return
+
+    total_packets = len(packets)
+    lost_packets = packets.count('0')
+    
+    # Поиск самой длинной последовательности подряд идущих нулей
+    max_consecutive_zeros = 0
+    current_zeros = 0
+    for packet in packets:
+        if packet == '0':
+            current_zeros += 1
+            if current_zeros > max_consecutive_zeros:
+                max_consecutive_zeros = current_zeros
+        else:
+            current_zeros = 0
+
+    loss_percentage = (lost_packets / total_packets) * 100 if total_packets > 0 else 0
+
+    # Оценка качества связи
+    if loss_percentage <= 1:
+        quality = "отличное" if loss_percentage == 0 else "Отличное качество" # в соответствии с примерами
+    elif loss_percentage <= 5:
+        quality = "Хорошее качество"
+    elif loss_percentage <= 10:
+        quality = "Удовлетворительное качество"
+    elif loss_percentage <= 20:
+        quality = "Плохое качество"
+    else:
+        quality = "критическое состояние сети"
+
+    print("\nВывод:")
+    print(f"Общее количество пакетов: {total_packets}")
+    print(f"Количество потерянных пакетов: {lost_packets}")
+    print(f"Длина самой длинной последовательности потерянных пакетов: {max_consecutive_zeros}")
+    print(f"Процент потерь: {loss_percentage:.1f}%")
+    print(f"Качество связи: {quality}")
+
+if __name__ == "__main__":
+    analyze_network_traffic()
